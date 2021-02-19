@@ -29,13 +29,36 @@ public class ScreenManager {
 
     public boolean isFilledIn(Coordinate coordinate) { // TODO: Implement this
 
-        ArrayList<Coordinate> list = new ArrayList<>(selectedPoints);
-        if (list.size() == 3)
-            return (isInside(list.get(2), list.get(1), list.get(0), coordinate) || isInside(list.get(0), list.get(1), list.get(2), coordinate)) && (isInside(list.get(2), list.get(0), list.get(1), coordinate) || isInside(list.get(1), list.get(0), list.get(2), coordinate));
-        return false;
-    }
+        if (selectedPoints.size() < 3) {
+            return false;
+        } else {
+            Coordinate[] coords = selectedPoints.toArray(new Coordinate[]{});
 
-    public static boolean isInside(Coordinate a, Coordinate b, Coordinate c, Coordinate point) {
-        return (((a.getX() - point.getX()) * (b.getY() - point.getY()) - (a.getY() - point.getY()) * (b.getX() - point.getX())) > 0) && !(((a.getX() - point.getX()) * (c.getY() - point.getY()) - (a.getY() - point.getY()) * (c.getX() - point.getX())) > 0);
+
+            Coordinate point1 = coords[0];
+            Coordinate point2 = coords[1];
+            Coordinate point3 = coords[2];
+
+            double a1,b1,a2,b2,a3,b3,y = 0;
+
+            double y1 = point1.getY();
+            double x1 = point1.getX();
+            double y2 = point2.getY();
+            double x2 = point2.getX();
+            double y3 = point3.getY();
+            double x3 = point3.getX();
+
+            a1 = (y1 - y2) / (x2 - x1);
+            b1 = y1 - (a1 * x1);
+            y = a1 * x1 + b1;
+
+
+            boolean equation1,equation2,equation3 = false;
+
+            if (equation1 && equation2 && equation3) {
+                return true;
+            }
+
+        }
     }
 }
